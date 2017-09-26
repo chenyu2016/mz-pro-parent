@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-client/mz-pro-client.iml" filepath="$PROJECT_DIR$/mz-pro-client/mz-pro-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-config/mz-pro-config.iml" filepath="$PROJECT_DIR$/mz-pro-config/mz-pro-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-core/mz-pro-core.iml" filepath="$PROJECT_DIR$/mz-pro-core/mz-pro-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-facade/mz-pro-facade.iml" filepath="$PROJECT_DIR$/mz-pro-facade/mz-pro-facade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-parent.iml" filepath="$PROJECT_DIR$/mz-pro-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mz-pro-server/mz-pro-server.iml" filepath="$PROJECT_DIR$/mz-pro-server/mz-pro-server.iml" />
+    </modules>
+  </component>
+</project>

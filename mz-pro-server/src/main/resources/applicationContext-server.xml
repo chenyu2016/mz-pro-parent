@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--handler 入口类  这个是 多例-->
+    <bean id="serverChannelHandler" class="com.cy.netty.handler.MyChannelHandler" scope="prototype">
+        <property name="handlerList">
+            <list>
+                <bean class="com.cy.netty.handler.MyServerKeepAliveHandler" scope="prototype"/>
+                <bean class="com.cy.netty.handler.ServerHandler" scope="prototype"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--服务器server-->
+    <bean id="nettyServer" class="com.cy.netty.boot.NettyServer">
+        <property name="childChannelHandler" ref="serverChannelHandler"/>
+        <property name="port" value="${game_server_port:8080}"/>
+        <property name="workerPoolSize" value="${server_worker_pool_size:4}"/>
+    </bean>
+
+    <!-- 自定义protobuf解码器 -->
+    <bean id="myDecoderProtobuf" class="com.cy.netty.codec.MyCoderProtobuf" init-method="init">
+        <property name="fileName" value="cmd_proto.properties"/>
+        <property name="initCommand" value="false"/>
+    </bean>
+
+    <!-- 自定义总解码器 -->
+    <bean id="myDecoder" class="com.cy.netty.codec.MyCoder" factory-method="newInstance">
+        <property name="mediaMap">
+            <map key-type="java.lang.Byte">
+                <entry key="0x04" value-ref="myDecoderProtobuf"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 请求执行调度器 -->
+    <bean id="media" class="com.cy.netty.medium.Media" factory-method="getInstance"></bean>
+</beans>

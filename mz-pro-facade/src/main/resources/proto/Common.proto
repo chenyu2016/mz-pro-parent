@@ -1,0 +1,29 @@
+package dynasty;
+
+option java_package = "com.cy.netty.entity.proto";
+option java_outer_classname = "CommonHead";
+
+//响应头文件，请求时不需要，只需要有cmd，发生异常时cmd=1，消息内容如下
+message ResponseHead{
+   required int32 cmd = 1;//返回的命令号
+   optional int32 errCode = 2;//状态码 <0位异常 =0为正常请求成功
+   optional string err = 3;//错误的内容
+   optional int32 requestCmd = 4;//请求的命令号
+}
+
+//同步请求标志,后台测试使用
+message SyncStat{
+   required int64 id = 1;
+   required int32 stat = 2;
+}
+
+//100000心跳请求
+message KeepAliveRequest{
+   required int32 cmd = 1[default=100000];
+}
+
+//100001心跳响应
+message KeepAliveResponse{
+   required int32 cmd = 1[default=100001];
+}
+
